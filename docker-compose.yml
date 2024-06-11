@@ -1,0 +1,26 @@
+services:
+  
+  db:
+    image: mysql:5.7
+    platform: linux/x86_64
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: eCommerce
+      MYSQL_USER: levap
+      MYSQL_PASSWORD: levap
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    platform: linux/x86_64
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
