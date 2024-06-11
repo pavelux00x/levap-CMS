@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     @include('backend.includes.favicon')
     @include('backend.includes.css')
-    <title>Sign in</title>
+    <title>Login</title>
 </head>
 
 <body class="bg-login">
@@ -24,8 +24,8 @@
                         <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="text-center">
-                                    <h3 class="">Sign in</h3>
-                                    <p>Don't have an account yet? <a href="/register">Sign up here</a>
+                                    <h3 class="">Login</h3>
+                                    <p>Non hai ancora un account? <a href="/register">Registrati qui</a>
                                     </p>
                                 </div>
                                 <div class="d-grid">
@@ -34,15 +34,15 @@
                           <img class="me-2" src="{{asset('backend_assets')}}/images/icons/search.svg" width="16"
                                alt="Image
                           Description">
-                          <span>Sign in with Google</span>
+                          <span>Registrati con google</span>
 											</span>
                                     </a>
                                 </div>
-                                <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH USERNAME</span>
+                                <div class="login-separater text-center mb-4"> <span>Oppure Login con Username </span>
                                     <hr/>
                                 </div>
                                 <div class="form-body">
-                                    <form id="login_form" class="row g-3" method="POST" action="{{route('login')
+                                    <form id="" class="row g-3" method="POST" action="{{route('login')
                                     }}">
                                         @csrf
 
@@ -58,11 +58,11 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="inputChoosePassword" class="form-label">Enter Password</label>
+                                            <label for="inputChoosePassword" class="form-label">Password</label>
                                             <div class="input-group" id="show_hide_password">
                                                 <input name="password" autocomplete="current-password"
                                                        type="password" class="form-control border-end-0"
-                                                       id="inputChoosePassword" placeholder="Enter Password"
+                                                       id="inputChoosePassword" placeholder="Password qui"
                                                        required> <a	href="javascript:;"
                                                                        class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
                                             </div>
@@ -71,12 +71,12 @@
                                             <div class="form-check form-switch">
                                                 <input name="remember" class="form-check-input" type="checkbox"
                                                        id="flexSwitchCheckChecked" checked>
-                                                <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Rimani Attivo</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</button>
+                                                <button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Login</button>
                                             </div>
                                         </div>
                                     </form>
