@@ -1,16 +1,16 @@
 @php use App\MyHelpers;use Illuminate\Support\Facades\Auth; @endphp
 @extends('backend.layouts.app')
-@section('PageTitle', 'Vendors')
+@section('PageTitle', 'Venditori')
 @section('content')
     <!--breadcrumb -->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Vendor</div>
+        <div class="breadcrumb-title pe-3">Venditori</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="dashboard"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Vendor List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Lista venditori</li>
                 </ol>
             </nav>
         </div>
@@ -23,13 +23,13 @@
                 <table id="data_table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Nome</th>
                         <th>Email</th>
-                        <th>Joined Date</th>
-                        <th>Status</th>
-                        <th>View Details</th>
-                        <th>Activate</th>
-                        <th>Delete</th>
+                        <th>Data di registrazione</th>
+                        <th>Stato</th>
+                        <th>Visualizza dettagli</th>
+                        <th>Attiva</th>
+                        <th>Elimina</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,16 +41,16 @@
                             {{--                            <td>{{$item->status}}</td>--}}
                             <td>
                                 @if($item->status)
-                                    <div class="badge rounded-pill bg-light-success text-success w-100">active</div>
+                                    <div class="badge rounded-pill bg-light-success text-success w-100">attivo</div>
                                 @else
-                                    <div class="badge rounded-pill bg-light-danger text-danger w-100">Not active</div>
+                                    <div class="badge rounded-pill bg-light-danger text-danger w-100">Non attivo</div>
                                 @endif
                             </td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm radius-30 px-4"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#exampleVerticallycenteredModal-{{$item->id}}">View
-                                    Details
+                                        data-bs-target="#exampleVerticallycenteredModal-{{$item->id}}">Visualizza
+                                    dettagli
                                 </button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleVerticallycenteredModal-{{$item->id}}" tabindex="-1"
@@ -58,7 +58,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Vendor Details</h5>
+                                                <h5 class="modal-title">Dettagli venditore</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                             </div>
@@ -67,7 +67,7 @@
                                                      class="card-img-top" style="max-width: 300px; margin-left:
                                                          10px">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Name : <span style="font-weight:
+                                                    <h5 class="card-title">Nome : <span style="font-weight:
                                                          lighter">{{$item->name}}</span>
                                                     </h5>
                                                     <h5 class="card-title">Email : <span style="font-weight:
@@ -76,19 +76,19 @@
                                                     <h5 class="card-title">Username : <span style="font-weight:
                                                          lighter">{{$item->username}}</span>
                                                     </h5>
-                                                    <h5 class="card-title">Address : <span style="font-weight:
-                                                         lighter">{{$item->address ?  : 'No address
+                                                    <h5 class="card-title">Indirizzo : <span style="font-weight:
+                                                         lighter">{{$item->address ?  : 'Nessun indirizzo
                                                          '}}</span>
                                                     </h5>
-                                                    <h5 class="card-title">Phone Number : <span style="font-weight:
-                                                         lighter">{{$item->phone_number ? : 'No phone number'}}</span>
+                                                    <h5 class="card-title">Numero di telefono : <span style="font-weight:
+                                                         lighter">{{$item->phone_number ? : 'Nessun numero di telefono'}}</span>
                                                     </h5>
-                                                    <h5 class="card-title">Status : <span style="font-weight:
+                                                    <h5 class="card-title">Stato : <span style="font-weight:
                                                          lighter">
                                                             @if($item->status)
-                                                                <span style="color: lime">active</span>
+                                                                <span style="color: lime">attivo</span>
                                                             @else
-                                                                <span style="color: red">Not active</span>
+                                                                <span style="color: red">Non attivo</span>
                                                             @endif
                                                         </span>
                                                     </h5>
@@ -96,7 +96,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    Close
+                                                    Chiudi
                                                 </button>
                                             </div>
                                         </div>
@@ -113,25 +113,25 @@
                                         @if($item->status)
                                             <input name="de_activate" class="btn
                                             btn-outline-danger" type="submit"
-                                                   value="De-Active">
+                                                   value="Disattiva">
                                         @else
                                             <input name="activate" class="btn
                                             btn-outline-success" type="submit"
-                                                   value=" Activate ">
+                                                   value=" Attivato ">
                                         @endif
 
                                     </div>
                                 </form>
                             </td>
                             <td>
-                                <div class="d-flex order-actions">
-                                    <a href="" class="ms-3" data-bs-toggle="modal"
-                                       data-bs-target="#exampleDangerModal-{{$item->id}}">
-
-                                        <i class='bx bxs-trash'></i>
-                                    </a>
-                                </div>
+                                <form method="POST" action="{{route('admin-vendor-remove')}}">
+                                    @csrf
+                                    <input name="vendor_id" value="{{$item->id}}" hidden/>
+                                    <p>{{ $item->id }}</p>
+                                    <button type="submit" class="btn btn-danger btn-sm radius-30 px-4">Elimina</button>
+                                </form>
                             </td>
+
                         </tr>
 
                     @endforeach
@@ -216,5 +216,6 @@
                 });
             });
         </script>
+
     @endsection
 @endsection

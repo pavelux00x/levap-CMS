@@ -34,7 +34,7 @@ class BrandRequest extends FormRequest
         return [
             'brand_name' =>  ['required', 'string', 'max:150',
                 Rule::unique('brand')->ignore($currentBrandId, 'brand_id')],
-            'brand_image' => [$currentBrandId != 0 ? 'nullable':'required', 'image', 'mimes:' . self::ALLOWED_EXTENSION]
+            'brand_image' => [$currentBrandId != 0 ? 'nullable':'required', 'image', 'mimes:' . self::ALLOWED_EXTENSION, 'max:10240']
         ];
     }
 }

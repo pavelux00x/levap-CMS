@@ -25,23 +25,30 @@ class AdminController extends UserController
         $userId = Auth::id();
         try {
             if(User::findOrFail($userId)->update($data))
-                return response(['msg' => "Your Info is updated successfully"], 200);
+                return response(['msg' => "Info aggiornate con successo"], 200);
         }catch (ModelNotFoundException $exception){
-            toastr()->error('Failed to save changes, try again.');
+            toastr()->error('Errore durante l\'aggiornamento delle informazioni');
             return redirect()->route('admin-profile');
         }
     }
 
     public function userRemove(Request $request){
         try {
-            $user = User::findOrFail($request->id);
-            MyHelpers::deleteImageFromStorage($user->photo , 'uploads/images/profile/');
-            if ($user->delete())
-                return redirect()->route('admin-vendor-list')->with('success', 'Successfully removed.');
-            else
-                return redirect('admin-vendor-list')->with('error', 'Failed to remove this user.');
+            $id= $request->vendor_id;
+            $user = User::find($id);
+    
+            if (!$user) {
+                return redirect('admin-vendor-list')->with('error', 'ID ' . $id . ' non trovato. Riprova. ');
+            }
+    
+            if ($user->delete()){
+                return redirect()->route('admin-vendor-list')->with('success', 'Utente rimosso con successo');
+            }
+            else{
+                return redirect('admin-vendor-list')->with('error', 'Errore durante la rimozione dell\'utente. Riprova.');
+            }
         }catch (ModelNotFoundException $exception){
-            return redirect('admin-vendor-list')->with('error', 'Failed to remove this user.');
+            return redirect('admin-vendor-list')->with('error', $exception->getMessage());
         }
     }
 
@@ -60,18 +67,18 @@ class AdminController extends UserController
             // notify the vendor
             Notification::send($vendor, new VendorActivated());
 
-            return response(['msg' => 'Vendor now is activated.'], 200);
+            return response(['msg' => 'Venditore abilitato.'], 200);
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('admin-vendor-list')->with('error', 'Failed to activate this vendor, try again');
+            return redirect()->route('admin-vendor-list')->with('error','Errore durante l\'attivazione del venditore, riprova');
         }
     }
     public function vendorDeActivate(int $vendor_id){
 
         try {
             User::findOrFail($vendor_id)->update(['status' => 0]);
-            return response(['msg' => 'Vendor now is disabled.'], 200);
+            return response(['msg' => 'Venditore disabilitato.'], 200);
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('admin-vendor-list')->with('error', 'Failed to activate this vendor, try again');
+            return redirect()->route('admin-vendor-list')->with('error', 'Errore durante la disattivazione del venditore, riprova.');
         }
     }
 

@@ -27,9 +27,9 @@ class BrandController extends Controller
 
         // insert
         if (BrandModel::insert($data))
-            return response(['msg' => 'Brand is added successfully.'], 200);
+            return response(['msg' => 'Brand creato con successo!'], 200);
         else
-            return redirect('brands')->with('error', 'Failed to add this brand, try again.');
+            return redirect('brands')->with('error', 'Qualcosa è andato storto, riprova.');
     }
 
     /**
@@ -48,11 +48,11 @@ class BrandController extends Controller
             $brand = BrandModel::findOrFail($request->id);
             MyHelpers::deleteImageFromStorage($brand->brand_image , 'uploads/images/brand/');
             if ($brand->delete())
-                return redirect()->route('brand')->with('success', 'Successfully removed.');
+                return redirect()->route('brand')->with('success', 'Brand rimosso con successo.');
             else
-                return redirect('brands')->with('error', 'Failed to remove this brand.');
+                return redirect('brands')->with('error', 'Qualcosa è andato storto, riprova.');
         }catch (ModelNotFoundException $exception){
-            return redirect('brands')->with('error', 'Failed to remove this brand.');
+            return redirect('brands')->with('error', 'Qualcosa è andato storto, riprova.');
         }
     }
 
@@ -67,7 +67,7 @@ class BrandController extends Controller
         try {
             $brand = BrandModel::findOrFail($request->get('brand_id'));
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('admin-brand')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('admin-brand')->with('error', 'Qualcosa è andato storto, riprova.');
         }
 
         // handling if the request has an image
@@ -81,8 +81,8 @@ class BrandController extends Controller
         // update
         $data['brand_slug'] = $this->getBrandSlug($data['brand_name']);
         if ($brand->update($data))
-            return response(['msg' => 'Brand is updated successfully.'], 200);
+            return response(['msg' => 'Brand Aggiornato'], 200);
         else
-            return redirect()->route('admin-brand')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('admin-brand')->with('error', 'Qualcosa è andato storto, riprova.');
     }
 }

@@ -1,9 +1,10 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
 @if(Auth::user())
-    @switch(Auth::user()->role)
-        @case("vendor")
-            @include('backend.profile.vendor_profile')
-    @endswitch
+    @if(Auth::user()->role == "Venditore")
+            @include('backend.profile.Venditore_profile')
+    @elseif(Auth::user()->role == "admin")
+            @include('backend.profile.admin_profile')       
+    @endif
 @else
     @include('auth.login')
 @endif

@@ -26,9 +26,9 @@ Route::middleware(['auth', 'auth.role:admin'])
     });
 
 // for vendor
-Route::middleware(['auth', 'auth.role:vendor'])
-    ->prefix('vendor')
-    ->name('vendor-')
+Route::middleware(['auth', 'auth.role:Venditore'])
+    ->prefix('Venditore')
+    ->name('Venditore-')
     ->controller(ProductController::class)->group(function (){
 
         Route::get('products', 'getProducts')->name('product');

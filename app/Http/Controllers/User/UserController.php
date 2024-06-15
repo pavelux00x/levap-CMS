@@ -30,7 +30,7 @@ class UserController extends Controller
                     'image' => ['nullable', 'image', 'mimes:' . $allowedExtensions, 'max:4096']
                 ],
                 [
-                    'image.image' => 'The file must be an image.'
+                    'image.image' => 'Il file deve essere un\'immagine',
                 ]
             );
 
@@ -43,7 +43,7 @@ class UserController extends Controller
                 if ($user){
                     // remove the old image
                     MyHelpers::deleteImageFromStorage(Auth::user()->photo, 'uploads/images/profile/');
-                    return response(['msg' => 'Your image is updated successfully'],200);
+                    return response(['msg' => 'Immagine caricata correttamente'],200);
                 }
             }catch (ModelNotFoundException $exception){
                 toastr()->error('failed to update the new image');
@@ -70,7 +70,7 @@ class UserController extends Controller
         User::find(Auth::id())->update([
             'password' => Hash::make($data['new_password'])
         ]);
-        return response(['msg' => 'Updated Successfully'], 200);
+        return response(['msg' => 'Password Cambiata'], 200);
     }
 
 

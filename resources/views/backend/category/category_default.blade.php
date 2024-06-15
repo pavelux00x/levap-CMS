@@ -2,17 +2,17 @@
     use Illuminate\Support\Facades\Auth;$role = Auth::user()->role;
 @endphp
 @extends('backend.layouts.app')
-@section('PageTitle', 'Categories')
+@section('PageTitle', 'Categorie')
 @section('content')
     <!--breadcrumb -->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Category</div>
+        <div class="breadcrumb-title pe-3">Categoria</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{route($role . '-profile')}}"><i class="bx
                     bx-home-alt"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Category List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Elenco delle categorie</li>
                 </ol>
             </nav>
         </div>
@@ -24,15 +24,15 @@
             <div class="table-responsive">
                 <div class="ms-auto" style="margin-bottom: 20px">
                     <a href="add_category" class="btn btn-primary radius-30 mt-2 mt-lg-0">
-                        <i class="bx bxs-plus-square"></i>Add New Category</a></div>
+                        <i class="bx bxs-plus-square"></i>Aggiungi nuova categoria</a></div>
 
                 <table id="data_table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Category Name</th>
-                        <th>Category Slug</th>
-                        <th>View Details</th>
-                        <th>Actions</th>
+                        <th>Nome categoria</th>
+                        <th>Slug categoria</th>
+                        <th>Visualizza dettagli</th>
+                        <th>Azioni</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,8 +43,8 @@
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm radius-30 px-4"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#exampleVerticallycenteredModal-{{$item->category_id}}">View
-                                    Details
+                                        data-bs-target="#exampleVerticallycenteredModal-{{$item->category_id}}">Visualizza
+                                    dettagli
                                 </button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleVerticallycenteredModal-{{$item->category_id}}"
@@ -53,22 +53,22 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Category Details</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h5 class="modal-title">Dettagli categoria</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <img src="{{url('uploads/images/category/' . $item->category_image)}}"
                                                      class="card-img-top" style="max-width: 300px; margin-left:
                                                          10px">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Category Name : <span style="font-weight:
+                                                    <h5 class="card-title">Nome categoria: <span style="font-weight:
                                                          lighter">{{$item->category_name}}</span></h5>
-                                                    <h5 class="card-title">Category Slug : <span style="font-weight:
+                                                    <h5 class="card-title">Slug categoria: <span style="font-weight:
                                                          lighter">{{$item->category_slug}}</span></h5>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
                                             </div>
                                         </div>
                                     </div>
@@ -86,8 +86,8 @@
                                         <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Edit Category</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title">Modifica categoria</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="card">
@@ -100,7 +100,7 @@
                                                                        hidden />
                                                                 <div class="row mb-3">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Category Name</h6>
+                                                                        <h6 class="mb-0">Nome categoria</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input name="category_name" type="text"
@@ -113,7 +113,7 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Category Image</h6>
+                                                                        <h6 class="mb-0">Immagine categoria</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input name="category_image"
@@ -133,7 +133,7 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-3"></div>
                                                                     <div class="col-sm-9 text-secondary">
-                                                                        <input type="submit" class="btn btn-primary px-4" value="Save Changes"
+                                                                        <input type="submit" class="btn btn-primary px-4" value="Salva modifiche"
                                                                         />
                                                                     </div>
                                                                 </div>
@@ -142,7 +142,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,15 +159,15 @@
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content bg-danger">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title text-white">Sure ?</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <h5 class="modal-title text-white">Sei sicuro?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-light"
-                                                                data-bs-dismiss="modal">Cancel</button>
+                                                                data-bs-dismiss="modal">Annulla</button>
                                                         <button onclick="window.location.replace
                                                         ('remove_category/{{$item->category_id}}');"
-                                                                class="btn btn-dark">Confirm</button>
+                                                                class="btn btn-dark">Conferma</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,7 +218,7 @@
             $(document).ready(function(){
                 $('.category_form').on('submit', function(event){
                     event.preventDefault();
-                    // remove errors if the conditions are true
+                    // rimuovi gli errori se le condizioni sono vere
                     $('.category_form *').filter(':input.is-invalid').each(function(){
                         this.classList.remove('is-invalid');
                     });
@@ -235,7 +235,7 @@
                         processData: false,
                         success : function(response)
                         {
-                            // remove errors if the conditions are true
+                            // rimuovi gli errori se le condizioni sono vere
                             $('.category_form *').filter(':input.is-invalid').each(function(){
                                 this.classList.remove('is-invalid');
                             });

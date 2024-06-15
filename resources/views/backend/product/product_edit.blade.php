@@ -28,7 +28,7 @@
         <div class="card-body p-4">
             <h5 class="card-title">Edit Product</h5>
             <hr/>
-            <form action="{{route('vendor-product-update', ['id' => $data->product_id])}}" method="POST" id="product_form"
+            <form action="{{route('Venditore-product-update', ['id' => $data->product_id])}}" method="POST" id="product_form"
                   enctype="multipart/form-data">
                 <input name="product_id" value="{{$data->product_id}}" hidden/>
                 @csrf

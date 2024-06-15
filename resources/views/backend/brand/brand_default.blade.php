@@ -12,7 +12,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{route($role . '-profile')}}"><i class="bx
                     bx-home-alt"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Brand List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Lista Brand</li>
                 </ol>
             </nav>
         </div>
@@ -24,15 +24,15 @@
             <div class="table-responsive">
                 <div class="ms-auto" style="margin-bottom: 20px">
                     <a href="add_brand" class="btn btn-primary radius-30 mt-2 mt-lg-0">
-                        <i class="bx bxs-plus-square"></i>Add New Brand</a></div>
+                        <i class="bx bxs-plus-square"></i>Aggiungi nuovo Brand</a></div>
 
                 <table id="data_table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Brand Name</th>
-                        <th>Brand Slug</th>
-                        <th>View Details</th>
-                        <th>Actions</th>
+                        <th>Nome Brand</th>
+                        <th>Marca</th>
+                        <th>Vedi Dettagli</th>
+                        <th>Azioni</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,8 +43,7 @@
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm radius-30 px-4"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#exampleVerticallycenteredModal-{{$item->brand_id}}">View
-                                    Details
+                                        data-bs-target="#exampleVerticallycenteredModal-{{$item->brand_id}}">Vedi dettagli
                                 </button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleVerticallycenteredModal-{{$item->brand_id}}"
@@ -53,7 +52,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Brand Details</h5>
+                                                <h5 class="modal-title">Dettagli Brand</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                             </div>
@@ -62,15 +61,15 @@
                                                      class="card-img-top" style="max-width: 300px; margin-left:
                                                          10px">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Brand Name : <span style="font-weight:
+                                                    <h5 class="card-title">Nome Brand : <span style="font-weight:
                                                          lighter">{{$item->brand_name}}</span></h5>
-                                                    <h5 class="card-title">Brand Slug : <span style="font-weight:
+                                                    <h5 class="card-title">Nome Marca : <span style="font-weight:
                                                          lighter">{{$item->brand_slug}}</span></h5>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    Close
+                                                    Chiudi
                                                 </button>
                                             </div>
                                         </div>
@@ -89,7 +88,7 @@
                                         <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Edit Brand</h5>
+                                                    <h5 class="modal-title">Modifica Brand</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
@@ -103,7 +102,7 @@
                                                                        hidden/>
                                                                 <div class="row mb-3">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Brand Name</h6>
+                                                                        <h6 class="mb-0">Nome Brand</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input name="brand_name" type="text"
@@ -116,7 +115,7 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Brand Image</h6>
+                                                                        <h6 class="mb-0">Brand Immagine </h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input name="brand_image" id="brand_image"
@@ -138,7 +137,7 @@
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input type="submit"
                                                                                class="btn btn-primary px-4"
-                                                                               value="Save Changes"
+                                                                               value="Salva Modifiche"
                                                                         />
                                                                     </div>
                                                                 </div>
@@ -148,7 +147,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close
+                                                            data-bs-dismiss="modal">Chiudi
                                                     </button>
                                                 </div>
                                             </div>
@@ -165,17 +164,17 @@
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content bg-danger">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title text-white">Sure ?</h5>
+                                                        <h5 class="modal-title text-white">Sicuro di voler eliminare ?</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-light"
-                                                                data-bs-dismiss="modal">Cancel
+                                                                data-bs-dismiss="modal">Indietro
                                                         </button>
                                                         <button onclick="window.location.replace
                                                         ('remove_brand/{{$item->brand_id}}');"
-                                                                class="btn btn-dark">Confirm
+                                                                class="btn btn-dark">Conferma
                                                         </button>
                                                     </div>
                                                 </div>

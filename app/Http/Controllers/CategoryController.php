@@ -29,9 +29,9 @@ class CategoryController extends Controller
 
         // insert
         if (CategoryModel::insert($data))
-            return response(['msg' => 'Category is added successfully.'], 200);
+            return response(['msg' => 'Categoria aggiunta con successo '], 200);
         else
-            return redirect('categories')->with('error', 'Failed to add this category, try again.');
+            return redirect('categories')->with('error', 'Qualcosa è andato storto, riprova.');
     }
 
     /**
@@ -51,11 +51,11 @@ class CategoryController extends Controller
             $category = CategoryModel::findOrFail($request->id);
             MyHelpers::deleteImageFromStorage($category->category_image , 'uploads/images/category/');
             if ($category->delete())
-                return redirect()->route('category')->with('success', 'Successfully removed.');
+                return redirect()->route('category')->with('success', 'Categoria rimossa con successo.');
             else
-                return redirect('categories')->with('error', 'Failed to remove this category.');
+                return redirect('categories')->with('error', 'Qualcosa è andato storto, riprova.');
         }catch (ModelNotFoundException $exception){
-            return redirect('categories')->with('error', 'Failed to remove this category.');
+            return redirect('categories')->with('error', 'Qualcosa è andato storto, riprova.');
         }
     }
 

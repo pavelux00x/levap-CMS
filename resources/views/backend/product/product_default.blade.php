@@ -1,17 +1,17 @@
 @php use App\Http\Controllers\ProductController;use Illuminate\Support\Facades\Auth; $role = Auth::user()->role;@endphp
 
 @extends('backend.layouts.app')
-@section('PageTitle', 'Products')
+@section('PageTitle', 'Prodotti')
 @section('content')
     <!--breadcrumb -->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Products</div>
+        <div class="breadcrumb-title pe-3">Prodotti</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{route($role . '-profile')}}"><i class="bx
                     bx-home-alt"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Product List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Elenco Prodotti</li>
                 </ol>
             </nav>
         </div>
@@ -22,20 +22,20 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="ms-auto" style="margin-bottom: 20px">
-                    @if(Auth::user()->role == "vendor")
+                    @if(Auth::user()->role == "Venditore")
                         <a href="add_product" class="btn btn-primary radius-30 mt-2 mt-lg-0">
-                            <i class="bx bxs-plus-square"></i>Add New Product</a></div>
+                            <i class="bx bxs-plus-square"></i>Aggiungi Nuovo Prodotto</a></div>
                 @endif
                 <table id="data_table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Product Name</th>
-                        <th>Product Code</th>
-                        <th>Product Quantity</th>
-                        <th>Product Price</th>
-                        <th>Product Status</th>
-                        <th>Product Details</th>
-                        <th>Actions</th>
+                        <th>Nome Prodotto</th>
+                        <th>Codice Prodotto</th>
+                        <th>Quantità Prodotto</th>
+                        <th>Prezzo Prodotto</th>
+                        <th>Stato Prodotto</th>
+                        <th>Dettagli Prodotto</th>
+                        <th>Azioni</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,17 +46,17 @@
                             <td>{{$item->product_quantity}}</td>
                             <td>{{$item->product_price}}</td>
                             <td>
-                                <form method="POST" action="{{route('vendor-product-activate')}}" class="activate_form">
+                                <form method="POST" action="{{route('Venditore-product-activate')}}" class="activate_form">
                                     @csrf
                                     <input name="product_id" value="{{$item->product_id}}" hidden/>
                                     <input name="current_status" value="{{$item->product_status}}" hidden/>
                                     <div class="form-check form-switch">
                                         @if($item->product_status)
                                             <input name="de_activate" class="btn btn-outline-danger" type="submit"
-                                                   value="De-Active" @if(Auth::user()->role == 'admin') disabled @endif>
+                                                   value="Disattiva" @if(Auth::user()->role == 'admin') disabled @endif>
                                         @else
                                             <input name="activate" class="btn btn-outline-success" type="submit"
-                                                   value=" Activate " @if(Auth::user()->role == 'admin') disabled @endif>
+                                                   value="Attiva" @if(Auth::user()->role == 'admin') disabled @endif>
                                         @endif
 
                                     </div>
@@ -65,8 +65,8 @@
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm radius-30 px-4"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#exampleFullScreenModal-{{$item->product_id}}">View
-                                    Details
+                                        data-bs-target="#exampleFullScreenModal-{{$item->product_id}}">Visualizza
+                                    Dettagli
                                 </button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleFullScreenModal-{{$item->product_id}}"
@@ -75,7 +75,7 @@
                                     <div class="modal-dialog modal-fullscreen">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Product Details</h5>
+                                                <h5 class="modal-title">Dettagli Prodotto</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                             </div>
@@ -112,10 +112,10 @@
                                                                         <i class='bx bxs-star text-warning'></i>
                                                                         <i class='bx bxs-star text-secondary'></i>
                                                                     </div>
-                                                                    <div>142 reviews</div>
+                                                                    <div>142 recensioni</div>
                                                                     <div class="text-success"><i
                                                                             class='bx bxs-cart-alt align-middle'></i>
-                                                                        134 orders
+                                                                        134 ordini
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
@@ -125,10 +125,10 @@
                                                                 <p class="card-text
                                                                 fs-6">{!! $item->product_short_description !!}</p>
                                                                 <dl class="row">
-                                                                    <dt class="col-sm-3">Code</dt>
+                                                                    <dt class="col-sm-3">Codice</dt>
                                                                     <dd class="col-sm-9">{{$item->product_code}}</dd>
 
-                                                                    <dt class="col-sm-3">Colors</dt>
+                                                                    <dt class="col-sm-3">Colori</dt>
                                                                     <dd class="col-sm-9">
                                                                         <div
                                                                             class="color-indigators d-flex align-items-center gap-2">
@@ -143,7 +143,7 @@
 
                                                                     </dd>
 
-                                                                    <dt class="col-sm-3">Quantity</dt>
+                                                                    <dt class="col-sm-3">Quantità</dt>
                                                                     <dd class="col-sm-9">{{$item->product_quantity}}
 
                                                                     <dt class="col-sm-3">Tags</dt>
@@ -155,14 +155,14 @@
                                                                         @endforeach
                                                                     </dd>
 
-                                                                    <dt class="col-sm-3">Status</dt>
+                                                                    <dt class="col-sm-3">Stato</dt>
                                                                     <dd class="col-sm-9">
                                                                         @if($item->product_status)
                                                                             <span class="badge rounded-pill
-                                                                            bg-success">Active</span>
+                                                                            bg-success">Attivo</span>
                                                                         @else
                                                                             <span class="badge rounded-pill
-                                                                            bg-danger">De-Active</span>
+                                                                            bg-danger">Disattivo</span>
                                                                         @endif
                                                                     </dd>
                                                                 </dl>
@@ -176,7 +176,7 @@
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    Close
+                                                    Chiudi
                                                 </button>
                                             </div>
                                         </div>
@@ -185,7 +185,7 @@
                             </td>
                             <td>
                                 <div class="d-flex order-actions">
-                                    @if(Auth::user()->role == "vendor")
+                                    @if(Auth::user()->role == "Venditore")
                                         <a href="edit_product/{{$item->product_id}}"><i class='bx
                                        bxs-edit'></i>
                                         </a>
@@ -203,17 +203,17 @@
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content bg-danger">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title text-white">Sure ?</h5>
+                                                        <h5 class="modal-title text-white">Sei sicuro?</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-light"
-                                                                data-bs-dismiss="modal">Cancel
+                                                                data-bs-dismiss="modal">Annulla
                                                         </button>
                                                         <button onclick="window.location.replace
                                                         ('remove_product/{{$item->product_id}}');"
-                                                                class="btn btn-dark">Confirm
+                                                                class="btn btn-dark">Conferma
                                                         </button>
                                                     </div>
                                                 </div>
@@ -252,7 +252,7 @@
             $('form.activate_form').click('submit', function (event) {
                 event.preventDefault();
                 $.ajax({
-                    url: "{{route('vendor-product-activate')}}",
+                    url: "{{route('Venditore-product-activate')}}",
                     method: 'POST',
                     data: new FormData(this),
                     dataType: 'JSON',

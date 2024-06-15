@@ -37,9 +37,9 @@ class SubCategoryController extends Controller
 
         // insert
         if (SubCategoryModel::insert($data))
-            return response(['msg' => 'Sub Category is added successfully.'], 200);
+            return response(['msg' => 'SottoCategoria aggiunta con successo.'], 200);
         else
-            return redirect('sub_categories')->with('error', 'Failed to add this sub Category, try again.');
+            return redirect('sub_categories')->with('error', 'Qualcosa è andato storto, riprova.');
     }
 
     /**
@@ -59,11 +59,11 @@ class SubCategoryController extends Controller
             $sub_category = SubCategoryModel::findOrFail($request->id);
             MyHelpers::deleteImageFromStorage($sub_category->sub_category_image , 'uploads/images/sub_category/');
             if ($sub_category->delete())
-                return redirect()->route('sub-category')->with('success', 'Successfully removed.');
+                return redirect()->route('sub-category')->with('success', 'Rimosso con successo.');
             else
-                return redirect('sub_categories')->with('error', 'Failed to remove this sub Category.');
+                return redirect('sub_categories')->with('error', 'Qualcosa è andato storto, riprova.');
         }catch (ModelNotFoundException $exception){
-            return redirect('sub_categories')->with('error', 'Failed to remove this sub Category.');
+            return redirect('sub_categories')->with('error', 'Qualcosa è andato storto, riprova.');
         }
     }
 
@@ -78,7 +78,7 @@ class SubCategoryController extends Controller
         try {
             $sub_category = SubCategoryModel::findOrFail($request->get('sub_category_id'));
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('admin-sub-category')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('admin-sub-category')->with('error', 'Qualcosa è andato storto, riprova.');
         }
 
         // handling if the request has an image
@@ -93,8 +93,8 @@ class SubCategoryController extends Controller
         // update
         $data['sub_category_slug'] = $this->getCategorySlug($data['sub_category_name']);
         if ($sub_category->update($data))
-            return response(['msg' => 'Sub Category is updated successfully.'], 200);
+            return response(['msg' => 'SottoCategoria aggiornata con successo.'], 200);
         else
-            return redirect()->route('admin-sub-category')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('admin-sub-category')->with('error', 'Qualcosa è andato storto, riprova.');
     }
 }

@@ -3,7 +3,7 @@
 $role = Auth::user()->role;
 @endphp
 @extends('backend.layouts.app')
-@section('PageTitle', 'Add new brand')
+@section('PageTitle', 'Aggiungi nuovo brand')
 @section('content')
 
     <!--breadcrumb -->
@@ -15,7 +15,7 @@ $role = Auth::user()->role;
                     <li class="breadcrumb-item"><a href="{{route($role . '-profile')}}"><i class="bx
                     bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Add new brand</li>
+                    <li class="breadcrumb-item active" aria-current="page">Aggiungi nuovo Brand</li>
                 </ol>
             </nav>
         </div>
@@ -23,13 +23,13 @@ $role = Auth::user()->role;
     <!--end breadcrumb -->
     <div class="card">
         <div class="card-body">
-            <h4 class="d-flex align-items-center mb-3">Add brand</h4>
+            <h4 class="d-flex align-items-center mb-3">Aggiungi Brand</h4>
             <br>
             <form id="brand_form" action="brand_create" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <div class="col-sm-3">
-                        <h6 class="mb-0">Brand Name</h6>
+                        <h6 class="mb-0">Nome Brand</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         <input name="brand_name" type="text" class="form-control"
@@ -39,7 +39,7 @@ $role = Auth::user()->role;
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-3">
-                        <h6 class="mb-0">Brand Image</h6>
+                        <h6 class="mb-0">Immagine Brand</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         <input name="brand_image" id="brand_image" class="form-control" type="file" >
@@ -54,7 +54,7 @@ $role = Auth::user()->role;
                 <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-9 text-secondary">
-                        <input type="submit" class="btn btn-primary px-4" value="Save Changes"
+                        <input type="submit" class="btn btn-primary px-4" value="Salva Modifiche"
                         />
                     </div>
                 </div>
@@ -111,8 +111,8 @@ $role = Auth::user()->role;
                     error: function(response) {
                         var res = $.parseJSON(response.responseText);
                         $.each(res.errors, function (key, err){
-                            $('#' + key + '-error').text(err[0]);
-                            $('#' + key ).addClass('is-invalid');
+                            $('#' + key + '-error').html(err);
+                            $('#' + key).addClass('is-invalid');
                         });
                     }
                 });

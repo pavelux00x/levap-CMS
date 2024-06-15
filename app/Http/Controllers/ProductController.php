@@ -77,8 +77,8 @@ class ProductController extends Controller
             // handling the product offers
             $this->handleProductOffers($request, $insertedProductId);
 
-            return response(['msg' => 'Product is added successfully.'], 200);
-        }else return redirect('add_product')->with('error', 'Failed to add this product, try again.');
+            return response(['msg' => 'Prodotto aggiunto con successo.'], 200);
+        }else return redirect('add_product')->with('error', 'Prodotto non aggiunto, riprova.');
 
     }
 
@@ -161,21 +161,23 @@ class ProductController extends Controller
         $productId = $request->id;
         $images = self::getProductImages($productId);
         try {
+            // Delete related records from product_offers table
+            ProductOffersModel::where('offer_product_id', $productId)->delete();
+    
             $product = ProductModel::findOrFail($productId);
             if ($product->delete()){
                 // removing the thumbnail
                 MyHelpers::deleteImageFromStorage($product->product_thumbnail, self::PRODUCT_IMAGES_PATH . '/');
-
+    
                 // removing images
                 foreach ($images as $item)
                     MyHelpers::deleteImageFromStorage($item->product_image, self::PRODUCT_IMAGES_PATH . '/');
-
-                return redirect('vendor/products')->with('success', 'Removed Successfully.');
+    
+                return redirect('vendor/products')->with('success', 'Rimosso con successo.');
             }
-            else return redirect('vendor/products')->with('error', 'Failed to remove this product.');
+            else return redirect('vendor/products')->with('error', 'Qualcosa è andato storto, riprova.');
         }catch (ModelNotFoundException $exception){
-            return redirect('products')->with('error', 'Failed to remove this product.');
-
+            return redirect('products')->with('error', 'Qualcosa è andato storto, riprova.');
         }
     }
 
@@ -193,7 +195,7 @@ class ProductController extends Controller
             $productImages = ProductImagesModel::where('image_product_id', $productId)->get();
             return view('backend.product.product_edit', compact('data', 'brands', 'subCategories', 'productImages'));
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('vendor-product')->with('error', 'Failed, try again later.');
+            return redirect()->route('vendor-product')->with('error', 'Prodotto non trovato, riprova.');
         }
     }
 
@@ -209,7 +211,7 @@ class ProductController extends Controller
         try {
             $oldProduct = ProductModel::findOrFail($product_id);
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('vendor-product-edit')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('vendor-product-edit')->with('error', 'Prodotto non trovato, riprova.');
         }
 
         // handling the product thumbnail
@@ -254,8 +256,8 @@ class ProductController extends Controller
             // handling the product offers
             $this->handleProductOffers($request, $product_id, true);
 
-            return response(['msg' => 'Product is updated successfully.'], 200);
-        }else return redirect('update_product')->with('error', 'Failed to update this product, try again.');
+            return response(['msg' => 'Prodotto aggiornato con successo.'], 200);
+        }else return redirect('update_product')->with('error', 'Prodotto non aggiornato, riprova.');
     }
 
     /**
@@ -271,9 +273,9 @@ class ProductController extends Controller
 
         try {
             ProductModel::findOrFail($product_id)->update(['product_status' => 1]);
-            return response(['msg' => 'Product now is active.'], 200);
+            return response(['msg' => 'Prodotto attivato.'], 200);
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('vendor-product')->with('error', 'Failed to activate this product, try again');
+            return redirect()->route('vendor-product')->with('error', 'Errore durante l\'attivazione del prodotto, riprova.');
         }
     }
 
@@ -283,9 +285,9 @@ class ProductController extends Controller
     public function productDeActivate(int $productId){
         try {
             ProductModel::findOrFail($productId)->update(['product_status' => 0]);
-            return response(['msg' => 'Product now is disabled.'], 200);
+            return response(['msg' => 'Prodotto disattivato.'], 200);
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('vendor-product')->with('error', 'Failed to activate this product, try again');
+            return redirect()->route('vendor-product')->with('error', 'Errore durante la disattivazione del prodotto, riprova.');
         }
     }
 

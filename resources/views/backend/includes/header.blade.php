@@ -12,7 +12,7 @@
             </div>
             <div class="search-bar flex-grow-1">
                 <div class="position-relative search-bar-box">
-                    <input type="text" class="form-control search-control" placeholder="Type to search..."> <span
+                    <input type="text" class="form-control search-control" placeholder="Scrivi per cercare"> <span
                         class="position-absolute top-50 search-show translate-middle-y"><i
                             class='bx bx-search'></i></span>
                     <span class="position-absolute top-50 search-close translate-middle-y"><i
@@ -42,10 +42,10 @@
                         <div class="dropdown-menu dropdown-menu-end">
                             <a href="javascript:;">
                                 <div class="msg-header">
-                                    <p class="msg-header-title">Notifications</p>
+                                    <p class="msg-header-title">Notifiche</p>
 
-                                    <p id="mark-as-read" class="msg-header-clear ms-auto" >Marks all as
-                                        read</p>
+                                    <p id="mark-as-read" class="msg-header-clear ms-auto" >Leggi tutto </p>
+                                    
                                 </div>
                             </a>
                             <div class="header-notifications-list">
@@ -69,6 +69,7 @@
                                 @endforelse
                             </div>
                         </div>
+
                     </li>
 
                     <li class="nav-item dropdown dropdown-large">
@@ -99,7 +100,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="profile"><i class="bx bx-user"></i><span>Profile</span></a>
+                        <a class="dropdown-item" href="profile"><i class="bx bx-user"></i><span>Profilo</span></a>
                     </li>
 
                     <li>
@@ -134,6 +135,27 @@
 
                 $.ajax({
                     url: "{{route('read-all-notifications')}}",
+                    method: 'GET',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success : function(response)
+                    {
+                        $('#notification-alert-count').remove();
+                    },
+                    error: function(response) {
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#mark-as-removed').click( function(e){
+                console.log('clicked');
+
+                $.ajax({
+                    url: "{{route('mark-all-as-deleted')}}",
                     method: 'GET',
                     contentType: false,
                     cache: false,

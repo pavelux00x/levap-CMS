@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth'])
-    ->prefix('vendor')
-    ->name('vendor-')
+Route::middleware(['auth', 'auth.role:Venditore'])
+    ->prefix('Venditore')
+    ->name('Venditore-')
     ->controller(CouponController::class)->group(function (){
         Route::get('coupons', 'getAllCoupons')->name('coupon');
         Route::view('add_coupon', 'backend.coupon.coupon_add')->name('coupon-add');
@@ -22,7 +22,7 @@ Route::middleware(['auth'])
 
     });
 
-Route::middleware(['auth'])
+Route::middleware(['auth', 'auth.role:admin'])
     ->prefix('admin')
     ->name('admin-')
     ->controller(CouponController::class)->group(function (){

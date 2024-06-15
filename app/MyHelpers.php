@@ -5,6 +5,8 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Exception;
 
 class MyHelpers
 {
@@ -60,7 +62,8 @@ class MyHelpers
      * @return string
      */
     public static function getDiffOfDate(string $timestamp): string{
-        $result = Carbon::parse($timestamp)->diffForHumans();
-        return $result;
+        $date = Carbon::parse($timestamp);
+        Carbon::setLocale('it');
+        return $date->diffForHumans();
     }
 }

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 
 <head>
@@ -45,33 +45,33 @@
     </div>
     <div class="switcher-body">
         <div class="d-flex align-items-center">
-            <h5 class="mb-0 text-uppercase">Theme Customizer</h5>
+            <h5 class="mb-0 text-uppercase">Temi Personalizzati</h5>
             <button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
         </div>
         <hr/>
-        <h6 class="mb-0">Theme Styles</h6>
+        <h6 class="mb-0">Stili dei temi</h6>
         <hr/>
         <div class="d-flex align-items-center justify-content-between">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
-                <label class="form-check-label" for="lightmode">Light</label>
+                <label class="form-check-label" for="lightmode">Chiaro</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode">
-                <label class="form-check-label" for="darkmode">Dark</label>
+                <label class="form-check-label" for="darkmode">Scuro</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="semidark">
-                <label class="form-check-label" for="semidark">Semi Dark</label>
+                <label class="form-check-label" for="semidark">Semi Scuro</label>
             </div>
         </div>
         <hr/>
         <div class="form-check">
             <input class="form-check-input" type="radio" id="minimaltheme" name="flexRadioDefault">
-            <label class="form-check-label" for="minimaltheme">Minimal Theme</label>
+            <label class="form-check-label" for="minimaltheme">Minimal Tema</label>
         </div>
         <hr/>
-        <h6 class="mb-0">Header Colors</h6>
+        <h6 class="mb-0">Header Colori</h6>
         <hr/>
         <div class="header-colors-indigators">
             <div class="row row-cols-auto g-3">
@@ -103,7 +103,7 @@
         </div>
 
         <hr/>
-        <h6 class="mb-0">Sidebar Backgrounds</h6>
+        <h6 class="mb-0">Barra Colori</h6>
         <hr/>
         <div class="header-colors-indigators">
             <div class="row row-cols-auto g-3">

@@ -18,7 +18,7 @@
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
                 <div class="col mx-auto">
                     <div class="mb-4 text-center">
-                        <img src="{{asset('backend_assets')}}/images/logo-img.png" width="180" alt="" />
+                        {{-- <img src="{{asset('backend_assets')}}/images/logo-img.png" width="180" alt="" /> --}}
                     </div>
                     <div class="card">
                         <div class="card-body">
@@ -28,7 +28,7 @@
                                     <p>Non hai ancora un account? <a href="/register">Registrati qui</a>
                                     </p>
                                 </div>
-                                <div class="d-grid">
+                                {{-- <div class="d-grid">
                                     <a class="btn my-4 shadow-sm btn-white" href="social_auth/google"> <span class="d-flex
                                     justify-content-center align-items-center">
                           <img class="me-2" src="{{asset('backend_assets')}}/images/icons/search.svg" width="16"
@@ -37,7 +37,7 @@
                           <span>Registrati con google</span>
 											</span>
                                     </a>
-                                </div>
+                                </div> --}}
                                 <div class="login-separater text-center mb-4"> <span>Oppure Login con Username </span>
                                     <hr/>
                                 </div>
@@ -53,8 +53,7 @@
                                                    autofocus
                                                    required>
                                             <small style="color: #e20000" class="error"
-                                                   id="username-error">{{isset($errors->get('username')[0]) ? $errors->get
-                                                   ('username')[0] : null}}</small>
+                                                   id="username-error">{{isset($errors->get('username')[0]) ? "Errore nel login" : null}}</small>
                                         </div>
 
                                         <div class="col-12">

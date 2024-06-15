@@ -28,7 +28,7 @@
         <div class="card-body p-4">
             <h5 class="card-title">Add New Product</h5>
             <hr/>
-            <form action="{{route('vendor-product-create')}}" method="POST" id="product_form" enctype="multipart/form-data">
+            <form action="{{route('Venditore-product-create')}}" method="POST" id="product_form" enctype="multipart/form-data">
                 @csrf
                 <div class="form-body mt-4">
                     <div class="row">
@@ -208,7 +208,7 @@
                     this.innerHTML = '';
                 });
                 $.ajax({
-                    url: "{{route('vendor-product-create')}}",
+                    url: "{{route('Venditore-product-create')}}",
                     method: 'POST',
                     data: new FormData(this),
                     dataType: 'JSON',

@@ -36,13 +36,17 @@ class VendorController extends UserController
         $vendor_id = DB::table('vendor_shop')
             ->where('user_id', '=', $userId)
             ->get(['vendor_id'])[0];
+        
 
-
-        if ($this->updateUserData($userId, $userData) && $this->updateShopData((int)$vendor_id->vendor_id, $shopData))
-            return response(['msg' => "Your Info is updated successfully"], 200);
-        else{
-            toastr()->error('Failed to save changes, try again.');
-            return redirect()->route('vendor-profile');
+        // updating the data
+        $data_1= $this->updateUserData($userId, $userData);
+        $data_2= $this->updateShopData($userId, $shopData);
+        if ($data_1 && $data_2) {
+            return response(['msg' => "Info aggiornate con successo"], 200);
+        } else {
+            $a= $data_1;
+            $b= $data_2;
+            return response(['msg' => [$a,$b]], 200);
         }
 
     }
@@ -57,13 +61,16 @@ class VendorController extends UserController
     }
 
     /**
-     * @param int $vendorId
+     * @param int $userId
      * @param array $data
      * @return bool
      */
-    private function updateShopData(int $vendorId, Array $data): bool{
-        return DB::table('vendor_shop')->where('vendor_id', '=', $vendorId)->update($data);
+    private function updateShopData(int $userId,Array $data): bool{
+        if(DB::table('vendor_shop')->where('user_id', $userId)->exists()){
+            DB::table('vendor_shop')->where('user_id', $userId)->update($data);
+            return true;
     }
+}
 
     /**
      * @param int $userId

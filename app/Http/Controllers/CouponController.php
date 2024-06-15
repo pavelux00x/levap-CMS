@@ -40,11 +40,11 @@ class CouponController extends Controller
             $admins = User::where('role', 'admin')->get();
             $shopName = DB::table('vendor_shop')->where('user_id', Auth::id())->get('shop_name')[0]->shop_name;
             Notification::send($admins, new CouponInsertedNotification($shopName));
-            return response(['msg' => 'Coupon is created successfully.'], 200);
+            return response(['msg' => 'Coupon creato con successo'], 200);
         }
 
         else
-            return redirect('coupons')->with('error', 'Failed to add this coupon, try again.');
+            return redirect('coupons')->with('error', 'Qualcosa è andato storto, riprova.');
 
     }
 
@@ -57,11 +57,11 @@ class CouponController extends Controller
         try {
             $coupon = CouponModel::findOrFail($request->id);
             if ($coupon->delete())
-                return redirect()->route($role . '-coupon')->with('success', 'Successfully removed.');
+                return redirect()->route($role . '-coupon')->with('success', 'Coupon rimossa con successo.');
             else
-                return redirect('coupons')->with('error', 'Failed to remove this coupon.');
+                return redirect('coupons')->with('error', 'Qualcosa è andato storto, riprova.');
         }catch (ModelNotFoundException $exception){
-            return redirect('coupon')->with('error', 'Failed to remove this coupon.');
+            return redirect('coupon')->with('error', 'Qualcosa è andato storto, riprova.');
         }
     }
 
@@ -77,13 +77,13 @@ class CouponController extends Controller
         try {
             $coupon = CouponModel::findOrFail($request->get('coupon_id'));
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('vendor-coupon')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('vendor-coupon')->with('error', 'Qualcosa è andato storto, riprova.');
         }
 
         // update
         if ($coupon->update($data))
-            return response(['msg' => 'Coupon is updated successfully.'], 200);
+            return response(['msg' => 'Coupon aggiornato con successo'], 200);
         else
-            return redirect()->route('vendor-coupon')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('vendor-coupon')->with('error', 'Qualcosa è andato storto, riprova.');
     }
 }

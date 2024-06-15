@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Notifications\RegisteredNewVendor;
+use App\Notifications\SendTwoFactorCode;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -48,22 +49,26 @@ class RegisteredUserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => "Venditore",
         ]);
 
-        if ($request->role == 'vendor'){
+        if ($user->role === 'Venditore'){
             self::completeVendorRegistration($user);
         }
 
         event(new Registered($user));
 
-        Auth::login($user);
+        $user->generateTwoFactorCode();
+        $user->notify(new SendTwoFactorCode());
+
+        Auth::logout();
+        $request->session()->put('user_id', $user->id);
 
         // notify the admin
         $admins = User::where('role', 'admin')->get();
         Notification::send($admins, new RegisteredNewVendor());
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('2fa.index');
     }
 
     public static function completeVendorRegistration($user){

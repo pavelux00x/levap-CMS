@@ -1,6 +1,6 @@
 @php use App\MyHelpers;use Illuminate\Support\Facades\Auth; $role = Auth::user()->role;@endphp
 @extends('backend.layouts.app')
-@section('PageTitle', 'Coupons')
+@section('PageTitle', 'Coupon')
 @section('content')
     <!--breadcrumb -->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -10,7 +10,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{route($role . '-profile')}}"><i class="bx
                     bx-home-alt"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Coupon List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Elenco Coupon</li>
                 </ol>
             </nav>
         </div>
@@ -20,21 +20,21 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                @if(Auth::user()->role == "vendor")
+                @if(Auth::user()->role == "Venditore")
                     <div class="ms-auto" style="margin-bottom: 20px">
                         <a href="add_coupon" class="btn btn-primary radius-30 mt-2 mt-lg-0">
-                            <i class="bx bxs-plus-square"></i>Add New Coupon</a></div>
+                            <i class="bx bxs-plus-square"></i>Aggiungi Nuovo Coupon</a></div>
                 @endif
 
 
                 <table id="data_table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Coupon Code</th>
-                        <th>Discount</th>
-                        <th>Expiration Date</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th>Codice Coupon</th>
+                        <th>Sconto</th>
+                        <th>Data di Scadenza</th>
+                        <th>Stato</th>
+                        <th>Azioni</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,14 +45,14 @@
                             <td>{{MyHelpers::getDiffOfDate($item->expiration_date) }}</td>
                             <td>
                                 @if($item->coupon_status)
-                                    <div class="badge rounded-pill bg-light-success text-success w-100">active</div>
+                                    <div class="badge rounded-pill bg-light-success text-success w-100">attivo</div>
                                 @else
-                                    <div class="badge rounded-pill bg-light-danger text-danger w-100">Not active</div>
+                                    <div class="badge rounded-pill bg-light-danger text-danger w-100">Non attivo</div>
                                 @endif
                             </td>
                             <td>
                                 <div class="d-flex order-actions">
-                                    @if(Auth::user()->role == "vendor")
+                                    @if(Auth::user()->role == "Venditore")
                                         <a href="" class="" data-bs-toggle="modal"
                                            data-bs-target="#exampleFullScreenModal-{{$item->coupon_id}}"><i class='bx
                                        bxs-edit'></i></a>
@@ -66,7 +66,7 @@
                                         <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Edit Coupon</h5>
+                                                    <h5 class="modal-title">Modifica Coupon</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
@@ -74,14 +74,14 @@
                                                     <div class="card">
                                                         <div class="card-body">
                                                             <form class="coupon_form" action="{{route
-                                                            ('vendor-coupon-update')
+                                                            ('Venditore-coupon-update')
                                                             }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
                                                                 <input name="coupon_id" value="{{$item->coupon_id}}"
                                                                        hidden/>
                                                                 <div class="row mb-3">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Coupon Code</h6>
+                                                                        <h6 class="mb-0">Codice Coupon</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input name="coupon_code" type="text"
@@ -94,7 +94,7 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Discount %</h6>
+                                                                        <h6 class="mb-0">Sconto %</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input name="discount_amount" type="text"
@@ -107,7 +107,7 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Expiration Date</h6>
+                                                                        <h6 class="mb-0">Data di Scadenza</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input type="datetime-local"
@@ -125,7 +125,7 @@
                                                                     <div class="col-sm-9 text-secondary">
                                                                         <input type="submit"
                                                                                class="btn btn-primary px-4"
-                                                                               value="Save Changes"
+                                                                               value="Salva Modifiche"
                                                                         />
                                                                     </div>
                                                                 </div>
@@ -135,7 +135,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close
+                                                            data-bs-dismiss="modal">Chiudi
                                                     </button>
                                                 </div>
                                             </div>
@@ -153,17 +153,17 @@
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content bg-danger">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title text-white">Sure ?</h5>
+                                                        <h5 class="modal-title text-white">Sei sicuro?</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-light"
-                                                                data-bs-dismiss="modal">Cancel
+                                                                data-bs-dismiss="modal">Annulla
                                                         </button>
                                                         <button onclick="window.location.replace
                                                         ('remove_coupon/{{$item->coupon_id}}');"
-                                                                class="btn btn-dark">Confirm
+                                                                class="btn btn-dark">Conferma
                                                         </button>
                                                     </div>
                                                 </div>
@@ -216,7 +216,7 @@
             $(document).ready(function () {
                 $('.coupon_form').on('submit', function (event) {
                     event.preventDefault();
-                    // remove errors if the conditions are true
+                    // rimuovi gli errori se le condizioni sono vere
                     $('.coupon_form *').filter(':input.is-invalid').each(function () {
                         this.classList.remove('is-invalid');
                     });
@@ -224,7 +224,7 @@
                         this.innerHTML = '';
                     });
                     $.ajax({
-                        url: "{{route('vendor-coupon-update')}}",
+                        url: "{{route('Venditore-coupon-update')}}",
                         method: 'POST',
                         data: new FormData(this),
                         dataType: 'JSON',
@@ -232,7 +232,7 @@
                         cache: false,
                         processData: false,
                         success: function (response) {
-                            // remove errors if the conditions are true
+                            // rimuovi gli errori se le condizioni sono vere
                             $('.coupon_form *').filter(':input.is-invalid').each(function () {
                                 this.classList.remove('is-invalid');
                             });

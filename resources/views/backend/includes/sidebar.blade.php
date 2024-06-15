@@ -9,19 +9,21 @@
             <img src="{{asset('backend_assets')}}/images/logo-icon.png" class="logo-icon" alt="logo icon">
         </div>
         <div>
-            <h4 class="logo-text">Rukada</h4>
+            <h4 class="logo-text">Levap CMS</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-        <li class="menu-label">User</li>
+        <li class="menu-label">Utente</li>
         <li>
+
             <a href="{{route( $role . '-profile')}}" aria-expanded="false">
                 <div class="parent-icon"><i class="bx bx-user-circle"></i>
                 </div>
-                <div class="menu-title">Profile</div>
+                <div class="menu-title">Profilo di {{ Auth::user()->name }}</div>
+            </a>
             </a>
         </li>
         <li>
@@ -56,9 +58,9 @@
                     <div class="menu-title">Brands</div>
                 </a>
                 <ul>
-                    <li> <a href="{{route('brand')}}"><i class="bx bx-right-arrow-alt"></i>Show All</a>
+                    <li> <a href="{{route('brand')}}"><i class="bx bx-right-arrow-alt"></i>Guarda tutti</a>
                     </li>
-                    <li> <a href="{{route('brand-add')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
+                    <li> <a href="{{route('brand-add')}}"><i class="bx bx-right-arrow-alt"></i>Aggiungi Brand</a>
                     </li>
                 </ul>
 
@@ -67,12 +69,12 @@
                 <a class="has-arrow" style="cursor: pointer">
                     <div class="parent-icon"><i class='lni lni-folder'></i>
                     </div>
-                    <div class="menu-title">Categories</div>
+                    <div class="menu-title">Categorie</div>
                 </a>
                 <ul>
-                    <li> <a href="{{route('category')}}"><i class="bx bx-right-arrow-alt"></i>Show All</a>
+                    <li> <a href="{{route('category')}}"><i class="bx bx-right-arrow-alt"></i>Guarda tutti</a>
                     </li>
-                    <li> <a href="{{route('category-add')}}"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
+                    <li> <a href="{{route('category-add')}}"><i class="bx bx-right-arrow-alt"></i>Aggiungi categoria</a>
                     </li>
                 </ul>
             </li>
@@ -80,13 +82,12 @@
                 <a class="has-arrow" style="cursor: pointer">
                     <div class="parent-icon"><i class='lni lni-dinner'></i>
                     </div>
-                    <div class="menu-title">Sub Categories</div>
+                    <div class="menu-title">Sotto Categorie</div>
                 </a>
                 <ul>
-                    <li> <a href="{{route('sub-category')}}"><i class="bx bx-right-arrow-alt"></i>Show All</a>
+                    <li> <a href="{{route('sub-category')}}"><i class="bx bx-right-arrow-alt"></i>Guarda tutti</a>
                     </li>
-                    <li> <a href="{{route('sub-category-add')}}"><i class="bx bx-right-arrow-alt"></i>Add Sub
-                            Category</a>
+                    <li> <a href="{{route('sub-category-add')}}"><i class="bx bx-right-arrow-alt"></i>Aggiungi sotto categoria</a>
                     </li>
                 </ul>
             </li>
@@ -94,13 +95,12 @@
                 <a class="has-arrow" style="cursor: pointer">
                     <div class="parent-icon"><i class='lni lni-graph'></i>
                     </div>
-                    <div class="menu-title">Products</div>
+                    <div class="menu-title">Prodotti</div>
                 </a>
                 <ul>
-                    <li> <a href="{{route($role . '-product')}}"><i class="bx bx-right-arrow-alt"></i>Show All</a>
+                    <li> <a href="{{route($role . '-product')}}"><i class="bx bx-right-arrow-alt"></i>Guarda tutti</a>
                     </li>
-                    <li> <a href="{{route('vendor-product-add')}}"><i class="bx bx-right-arrow-alt"></i>Add
-                            Product</a>
+                    <li> <a href="{{route('Venditore-product-add')}}"><i class="bx bx-right-arrow-alt"></i>Aggiungi prodotti</a>
                     </li>
                 </ul>
             </li>
@@ -111,10 +111,9 @@
                     <div class="menu-title">Coupons</div>
                 </a>
                 <ul>
-                    <li> <a href="{{route($role . '-coupon')}}"><i class="bx bx-right-arrow-alt"></i>Show All</a>
+                    <li> <a href="{{route($role . '-coupon')}}"><i class="bx bx-right-arrow-alt"></i>Guarda tutti</a>
                     </li>
-                    <li> <a href="{{route('vendor-coupon-add')}}"><i class="bx bx-right-arrow-alt"></i>Add
-                            Coupon</a>
+                    <li> <a href="{{route('Venditore-coupon-add')}}"><i class="bx bx-right-arrow-alt"></i>Aggiungi Coupon</a>
                     </li>
                 </ul>
             </li>

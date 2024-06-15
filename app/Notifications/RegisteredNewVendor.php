@@ -55,8 +55,8 @@ class RegisteredNewVendor extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => 'New User Registered',
-            'message' => 'New vendor account need to be activated.',
+            'title' => 'Nuovo account venditore',
+            'message' => 'Un nuovo venditore si è registrato.',
             'icon' => 'bx-group'
         ];
     }

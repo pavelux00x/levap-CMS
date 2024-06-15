@@ -1,7 +1,7 @@
 @php use Illuminate\Support\Facades\Auth; $role = Auth::user()->role;@endphp
 
 @extends('backend.layouts.app')
-@section('PageTitle', 'Add new coupon')
+@section('PageTitle', 'Aggiungi nuovo coupon')
 @section('content')
 
     <!--breadcrumb -->
@@ -12,7 +12,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{route($role . '-profile')}}"><i class="bx
                     bx-home-alt"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add new coupon</li>
+                    <li class="breadcrumb-item active" aria-current="page">Aggiungi nuovo coupon</li>
                 </ol>
             </nav>
         </div>
@@ -20,13 +20,13 @@
     <!--end breadcrumb -->
     <div class="card">
         <div class="card-body">
-            <h4 class="d-flex align-items-center mb-3">Add coupon</h4>
+            <h4 class="d-flex align-items-center mb-3">Aggiungi coupon</h4>
             <br>
             <form id="coupon_form" action="create_coupon" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <div class="col-sm-3">
-                        <h6 class="mb-0">Coupon Code</h6>
+                        <h6 class="mb-0">Codice coupon</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         <input name="coupon_code" type="text" class="form-control"
@@ -36,7 +36,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-3">
-                        <h6 class="mb-0">Discount(%)</h6>
+                        <h6 class="mb-0">Sconto(%)</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         <input name="discount_amount" type="text" class="form-control"
@@ -46,7 +46,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-3">
-                        <h6 class="mb-0">Expiration Date</h6>
+                        <h6 class="mb-0">Data di scadenza</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         <input type="datetime-local" class="form-control" name="expiration_date" required>
@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-9 text-secondary">
-                        <input type="submit" class="btn btn-primary px-4" value="Save Changes"
+                        <input type="submit" class="btn btn-primary px-4" value="Salva modifiche"
                         />
                     </div>
                 </div>
@@ -76,7 +76,7 @@
         $(document).ready(function(){
             $('#coupon_form').on('submit', function(event){
                 event.preventDefault();
-                // remove errors if the conditions are true
+                // rimuovi gli errori se le condizioni sono vere
                 $('#coupon_form *').filter(':input.is-invalid').each(function(){
                     this.classList.remove('is-invalid');
                 });
@@ -84,7 +84,7 @@
                     this.innerHTML = '';
                 });
                 $.ajax({
-                    url: "{{route('vendor-coupon-create')}}",
+                    url: "{{route('Venditore-coupon-create')}}",
                     method: 'POST',
                     data: new FormData(this),
                     dataType: 'JSON',
@@ -93,7 +93,7 @@
                     processData: false,
                     success : function(response)
                     {
-                        // remove errors if the conditions are true
+                        // rimuovi gli errori se le condizioni sono vere
                         $('#coupon_form *').filter(':input.is-invalid').each(function(){
                             this.classList.remove('is-invalid');
                         });
