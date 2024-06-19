@@ -111,7 +111,9 @@ $role = Auth::user()->role;
                     error: function(response) {
                         var res = $.parseJSON(response.responseText);
                         $.each(res.errors, function (key, err){
-                            $('#' + key + '-error').html(err);
+                            if(key == 'brand_image'){
+                                $('#' + key + '-error').html("L'immagine del brand è obbligatoria");
+                            }
                             $('#' + key).addClass('is-invalid');
                         });
                     }

@@ -44,7 +44,7 @@
                 <a  href="{{route('admin-vendor-list')}}" style="cursor: pointer">
                     <div class="parent-icon"><i class='lni lni-world'></i>
                     </div>
-                    <div class="menu-title">Vendors</div>
+                    <div class="menu-title">Venditori</div>
                 </a>
 
             </li>

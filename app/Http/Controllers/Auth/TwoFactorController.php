@@ -22,7 +22,7 @@ class TwoFactorController extends Controller
             return redirect()->route('login');
         }
         
-        DB::table('users')->where('id', $user->id)->update(['to_2fa' => 0]);
+
         return view('auth.2fa');
     }
 
@@ -52,10 +52,11 @@ class TwoFactorController extends Controller
                     ->first();
 
         if (!$user) {
-            return redirect()->back()->withErrors(['two_factor_code' => 'Il codice è invalido o è scaduto.']);
+            return back()->withErrors(['two_factor_code' => 'The two factor code provided was invalid.']);
         }
 
         $user->resetTwoFactorCode();
+        DB::table('users')->where('id', $user->id)->update(['to_2fa' => 0]);
 
         Auth::login($user);
 

@@ -689,7 +689,20 @@
                     error: function (response) {
                         var res = $.parseJSON(response.responseText);
                         $.each(res.errors, function (key, err) {
-                            $('#' + key + '-error').text(err[0]);
+                            console.log(key);
+                            if(key == 'email'){
+                                var a='Email già esistente';
+                                $('#' + key + '-error').text(a);
+                            }
+                            if(key == 'username'){
+                                var a='Username già esistente';
+                                $('#' + key + '-error').text(a);
+                            }
+                            if(key == 'shop_name'){
+                                var a='Nome shop già esistente';
+                                $('#' + key + '-error').text(a);
+                            }
+
                             $('#' + key).addClass('is-invalid');
                         });
                     }

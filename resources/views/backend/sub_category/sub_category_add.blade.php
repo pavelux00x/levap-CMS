@@ -125,7 +125,14 @@
                     error: function(response) {
                         var res = $.parseJSON(response.responseText);
                         $.each(res.errors, function (key, err){
-                            $('#' + key + '-error').text(err[0]);
+                            console.log(key);
+                            if(key == 'sub_category_image'){
+                                $('#' + key + '-error').text("L'immagine della sottocategoria è obbligatoria");
+                            }
+                            if(key == 'category_id'){
+                                $('#' + key + '-error').text("La categoria è obbligatoria");
+                            }
+
                             $('#' + key ).addClass('is-invalid');
                         });
                     }

@@ -58,17 +58,15 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $user->generateTwoFactorCode();
-        $user->notify(new SendTwoFactorCode());
+
 
         Auth::logout();
         $request->session()->put('user_id', $user->id);
 
         // notify the admin
-        $admins = User::where('role', 'admin')->get();
-        Notification::send($admins, new RegisteredNewVendor());
 
-        return redirect()->route('2fa.index');
+
+        return redirect()->route('login');
     }
 
     public static function completeVendorRegistration($user){

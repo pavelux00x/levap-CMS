@@ -25,7 +25,13 @@
                             <div class="border p-4 rounded">
                                 <div class="text-center">
                                     <h3 class="">Login</h3>
+                                    
                                     <p>Non hai ancora un account? <a href="/register">Registrati qui</a>
+                                        @error('two_factor_code')ù
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>Attenzione!!! Riprova.</strong>
+                                        </span>
+                                        @enderror
                                     </p>
                                 </div>
                                 {{-- <div class="d-grid">

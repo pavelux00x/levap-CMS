@@ -70,7 +70,7 @@ class CategoryController extends Controller
         try {
             $category = CategoryModel::findOrFail($request->get('category_id'));
         }catch (ModelNotFoundException $exception){
-            return redirect()->route('admin-category')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('admin-category')->with('error', 'Qualcosa è andato storto, riprova.');
         }
 
         // handling if the request has an image
@@ -85,8 +85,8 @@ class CategoryController extends Controller
         // update
         $data['category_slug'] = $this->getCategorySlug($data['category_name']);
         if ($category->update($data))
-            return response(['msg' => 'Category is updated successfully.'], 200);
+            return response(['msg' => 'Categoria aggiornata con successo.'], 200);
         else
-            return redirect()->route('admin-category')->with('error', 'Something went wrong, try again.');
+            return redirect()->route('admin-category')->with('error', 'Qualcosa è andato storto, riprova.');
     }
 }

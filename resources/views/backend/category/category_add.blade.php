@@ -111,7 +111,9 @@
                     error: function(response) {
                         var res = $.parseJSON(response.responseText);
                         $.each(res.errors, function (key, err){
-                            $('#' + key + '-error').text(err[0]);
+                            if(key === 'category_image'){
+                                $('#' + key + '-error').text("L'immagine della categoria è obbligatoria");
+                            }
                             $('#' + key ).addClass('is-invalid');
                         });
                     }

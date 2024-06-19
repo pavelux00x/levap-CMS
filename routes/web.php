@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AiController;
 use App\Http\Controllers\Auth\TwoFactorController;
+use App\Http\Controllers\SendEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
-});
+    return view('codischool_index');
+})->name('index');
 
 Route::fallback(function (){
     return redirect()->route('login');
@@ -27,6 +28,7 @@ Route::post('/send-ai', [AiController::class, 'sendChatMessage']);
 Route::post('/mark-all-as-deleted', [AiController::class, 'markAllAsDeleted'])->name('mark-all-as-deleted');
 Route::get('/2fa', [TwoFactorController::class,'index'])->name('2fa.index');
 Route::post('/2fa', [TwoFactorController::class,'store'])->name('2fa.post');
+Route::post('/send-email', [SendEmailController::class, 'sendEmail'])->name('send.email');
 
 require_once __DIR__.'/auth.php';
 require_once __DIR__.'/admin.php';
