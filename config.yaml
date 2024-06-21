@@ -19,6 +19,7 @@ beef:
     user: "pavel"
     passwd: "levap"
 
+
   # Interface / IP restrictions
   restrictions:
     # subnet of IP addresses that can hook to the framework
